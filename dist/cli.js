@@ -1,10 +1,20 @@
 #!/usr/bin/env node
+import fs from "node:fs";
 import { Command } from "commander";
 import chalk from "chalk";
 import readline from "node:readline";
 import { SyncPipeline } from "./pipeline.js";
 import { CodeWatcher } from "./watcher/index.js";
 import { QueryEngine } from "./rag/queryEngine.js";
+function resolveSrcDir(customSrc) {
+    if (customSrc)
+        return customSrc;
+    if (fs.existsSync("src"))
+        return "src";
+    if (fs.existsSync("examples"))
+        return "examples";
+    return "src";
+}
 const program = new Command();
 program
     .name("rag-sync")
@@ -13,13 +23,14 @@ program
 program
     .command("build")
     .description("Compile all JSDoc source files into .d.ts, Markdown, and index into RAG vector store")
-    .option("-s, --src <dir>", "Source directory containing JSDoc files", "examples")
+    .option("-s, --src <dir>", "Source directory containing JSDoc files (auto-detects 'src' or 'examples')")
     .option("-t, --types <dir>", "Output directory for .d.ts files", "dist/types")
     .option("-d, --docs <dir>", "Output directory for Markdown files", "dist/docs")
     .action(async (options) => {
     try {
+        const srcDir = resolveSrcDir(options.src);
         const pipeline = new SyncPipeline({
-            srcDir: options.src,
+            srcDir,
             typesDir: options.types,
             docsDir: options.docs,
         });
@@ -35,20 +46,21 @@ program
 program
     .command("watch")
     .description("Continuously watch source directory and keep .d.ts, Markdown, and RAG vector store in sync")
-    .option("-s, --src <dir>", "Source directory containing JSDoc files", "examples")
+    .option("-s, --src <dir>", "Source directory containing JSDoc files (auto-detects 'src' or 'examples')")
     .option("-t, --types <dir>", "Output directory for .d.ts files", "dist/types")
     .option("-d, --docs <dir>", "Output directory for Markdown files", "dist/docs")
     .option("--debounce <ms>", "Debounce interval in milliseconds", "250")
     .action(async (options) => {
     try {
+        const srcDir = resolveSrcDir(options.src);
         const pipeline = new SyncPipeline({
-            srcDir: options.src,
+            srcDir,
             typesDir: options.types,
             docsDir: options.docs,
         });
         await pipeline.init();
         const watcher = new CodeWatcher(pipeline, {
-            srcDir: options.src,
+            srcDir,
             debounceMs: parseInt(options.debounce, 10),
         });
         await watcher.start();
