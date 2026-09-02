@@ -1,0 +1,203 @@
+{
+  "nodes": [
+    {
+      "id": "module:userService",
+      "name": "userService",
+      "kind": "Module",
+      "filePath": "/Users/dlabz/RAG/dist/types/userService.d.ts"
+    },
+    {
+      "id": "userService.UserService",
+      "name": "UserService",
+      "kind": "Class",
+      "filePath": "/Users/dlabz/RAG/dist/types/userService.d.ts",
+      "signature": "class UserService"
+    },
+    {
+      "id": "userService.UserService.authenticate",
+      "name": "UserService.authenticate",
+      "kind": "Method",
+      "filePath": "/Users/dlabz/RAG/dist/types/userService.d.ts",
+      "signature": "authenticate(username: string, password: string): Promise<AuthSession>"
+    },
+    {
+      "id": "userService.UserService.createUser",
+      "name": "UserService.createUser",
+      "kind": "Method",
+      "filePath": "/Users/dlabz/RAG/dist/types/userService.d.ts",
+      "signature": "createUser(data: Omit<UserProfile, \"id\">): Promise<UserProfile>"
+    },
+    {
+      "id": "userService.UserService.getUserById",
+      "name": "UserService.getUserById",
+      "kind": "Method",
+      "filePath": "/Users/dlabz/RAG/dist/types/userService.d.ts",
+      "signature": "getUserById(id: string): UserProfile | null"
+    },
+    {
+      "id": "userService.UserProfile",
+      "name": "UserProfile",
+      "kind": "TypeAlias",
+      "filePath": "/Users/dlabz/RAG/dist/types/userService.d.ts",
+      "signature": "export type UserProfile = {\n    /**\n     * - Unique identifier of the user.\n     */\n    id: string;\n    /**\n     * - User's unique login handle.\n     */\n    username: string;\n    /**\n     * - Verified contact email address.\n     */\n    email: string;\n    /**\n     * - Access control permission role.\n     */\n    role: \"admin\" | \"member\" | \"guest\";\n    /**\n     * - Whether the account is currently active.\n     */\n    isActive?: boolean;\n};"
+    },
+    {
+      "id": "userService.AuthSession",
+      "name": "AuthSession",
+      "kind": "TypeAlias",
+      "filePath": "/Users/dlabz/RAG/dist/types/userService.d.ts",
+      "signature": "export type AuthSession = {\n    /**\n     * - Signed JWT or Bearer session token.\n     */\n    token: string;\n    /**\n     * - Timestamp in milliseconds when the token expires.\n     */\n    expiresAt: number;\n    /**\n     * - Account profile snapshot.\n     */\n    user: UserProfile;\n};"
+    },
+    {
+      "id": "module:tempModule",
+      "name": "tempModule",
+      "kind": "Module",
+      "filePath": "/Users/dlabz/RAG/dist/types/tempModule.d.ts"
+    },
+    {
+      "id": "tempModule.greet",
+      "name": "greet",
+      "kind": "Function",
+      "filePath": "/Users/dlabz/RAG/dist/types/tempModule.d.ts",
+      "signature": "export function greet(name: string): string"
+    },
+    {
+      "id": "module:mathUtils",
+      "name": "mathUtils",
+      "kind": "Module",
+      "filePath": "/Users/dlabz/RAG/dist/types/mathUtils.d.ts"
+    },
+    {
+      "id": "mathUtils.calculateDistance",
+      "name": "calculateDistance",
+      "kind": "Function",
+      "filePath": "/Users/dlabz/RAG/dist/types/mathUtils.d.ts",
+      "signature": "export function calculateDistance(p1: Point2D, p2: Point2D): number"
+    },
+    {
+      "id": "mathUtils.lerp",
+      "name": "lerp",
+      "kind": "Function",
+      "filePath": "/Users/dlabz/RAG/dist/types/mathUtils.d.ts",
+      "signature": "export function lerp(a: number, b: number, t: number): number"
+    },
+    {
+      "id": "mathUtils.manhattanDistance",
+      "name": "manhattanDistance",
+      "kind": "Function",
+      "filePath": "/Users/dlabz/RAG/dist/types/mathUtils.d.ts",
+      "signature": "export function manhattanDistance(p1: Point2D, p2: Point2D): number"
+    },
+    {
+      "id": "mathUtils.Matrix2D",
+      "name": "Matrix2D",
+      "kind": "Class",
+      "filePath": "/Users/dlabz/RAG/dist/types/mathUtils.d.ts",
+      "signature": "class Matrix2D"
+    },
+    {
+      "id": "mathUtils.Matrix2D.determinant",
+      "name": "Matrix2D.determinant",
+      "kind": "Method",
+      "filePath": "/Users/dlabz/RAG/dist/types/mathUtils.d.ts",
+      "signature": "determinant(): number"
+    },
+    {
+      "id": "mathUtils.Matrix2D.multiply",
+      "name": "Matrix2D.multiply",
+      "kind": "Method",
+      "filePath": "/Users/dlabz/RAG/dist/types/mathUtils.d.ts",
+      "signature": "multiply(other: Matrix2D): Matrix2D"
+    },
+    {
+      "id": "mathUtils.Point2D",
+      "name": "Point2D",
+      "kind": "TypeAlias",
+      "filePath": "/Users/dlabz/RAG/dist/types/mathUtils.d.ts",
+      "signature": "export type Point2D = {\n    /**\n     * - The horizontal coordinate.\n     */\n    x: number;\n    /**\n     * - The vertical coordinate.\n     */\n    y: number;\n};"
+    }
+  ],
+  "edges": [
+    {
+      "source": "userService.UserService.authenticate",
+      "target": "userService.UserService",
+      "relation": "member_of"
+    },
+    {
+      "source": "userService.UserService.authenticate",
+      "target": "userService.AuthSession",
+      "relation": "returns_type"
+    },
+    {
+      "source": "userService.UserService.createUser",
+      "target": "userService.UserService",
+      "relation": "member_of"
+    },
+    {
+      "source": "userService.UserService.createUser",
+      "target": "userService.UserProfile",
+      "relation": "parameter_type"
+    },
+    {
+      "source": "userService.UserService.createUser",
+      "target": "userService.UserProfile",
+      "relation": "returns_type"
+    },
+    {
+      "source": "userService.UserService.getUserById",
+      "target": "userService.UserService",
+      "relation": "member_of"
+    },
+    {
+      "source": "userService.UserService.getUserById",
+      "target": "userService.UserProfile",
+      "relation": "returns_type"
+    },
+    {
+      "source": "userService.AuthSession",
+      "target": "userService.UserProfile",
+      "relation": "references_type"
+    },
+    {
+      "source": "mathUtils.calculateDistance",
+      "target": "mathUtils.Point2D",
+      "relation": "parameter_type"
+    },
+    {
+      "source": "mathUtils.calculateDistance",
+      "target": "mathUtils.Point2D",
+      "relation": "parameter_type"
+    },
+    {
+      "source": "mathUtils.manhattanDistance",
+      "target": "mathUtils.Point2D",
+      "relation": "parameter_type"
+    },
+    {
+      "source": "mathUtils.manhattanDistance",
+      "target": "mathUtils.Point2D",
+      "relation": "parameter_type"
+    },
+    {
+      "source": "mathUtils.Matrix2D.determinant",
+      "target": "mathUtils.Matrix2D",
+      "relation": "member_of"
+    },
+    {
+      "source": "mathUtils.Matrix2D.multiply",
+      "target": "mathUtils.Matrix2D",
+      "relation": "member_of"
+    },
+    {
+      "source": "mathUtils.Matrix2D.multiply",
+      "target": "mathUtils.Matrix2D",
+      "relation": "parameter_type"
+    },
+    {
+      "source": "mathUtils.Matrix2D.multiply",
+      "target": "mathUtils.Matrix2D",
+      "relation": "returns_type"
+    }
+  ],
+  "generatedAt": 1788390131719
+}

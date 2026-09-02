@@ -1,0 +1,35 @@
+flowchart TD
+    userService_UserService["class UserService"]:::classNode
+    userService_UserService_authenticate["UserService.authenticate"]
+    userService_UserService_createUser["UserService.createUser"]
+    userService_UserService_getUserById["UserService.getUserById"]
+    userService_UserProfile["type UserProfile"]:::typeNode
+    userService_AuthSession["type AuthSession"]:::typeNode
+    tempModule_greet["fn greet()"]:::fnNode
+    mathUtils_calculateDistance["fn calculateDistance()"]:::fnNode
+    mathUtils_lerp["fn lerp()"]:::fnNode
+    mathUtils_manhattanDistance["fn manhattanDistance()"]:::fnNode
+    mathUtils_Matrix2D["class Matrix2D"]:::classNode
+    mathUtils_Matrix2D_determinant["Matrix2D.determinant"]
+    mathUtils_Matrix2D_multiply["Matrix2D.multiply"]
+    mathUtils_Point2D["type Point2D"]:::typeNode
+    userService_UserService_authenticate ---|method| userService_UserService
+    userService_UserService_authenticate -->|returns| userService_AuthSession
+    userService_UserService_createUser ---|method| userService_UserService
+    userService_UserService_createUser -.->|param| userService_UserProfile
+    userService_UserService_createUser -->|returns| userService_UserProfile
+    userService_UserService_getUserById ---|method| userService_UserService
+    userService_UserService_getUserById -->|returns| userService_UserProfile
+    userService_AuthSession --> userService_UserProfile
+    mathUtils_calculateDistance -.->|param| mathUtils_Point2D
+    mathUtils_calculateDistance -.->|param| mathUtils_Point2D
+    mathUtils_manhattanDistance -.->|param| mathUtils_Point2D
+    mathUtils_manhattanDistance -.->|param| mathUtils_Point2D
+    mathUtils_Matrix2D_determinant ---|method| mathUtils_Matrix2D
+    mathUtils_Matrix2D_multiply ---|method| mathUtils_Matrix2D
+    mathUtils_Matrix2D_multiply -.->|param| mathUtils_Matrix2D
+    mathUtils_Matrix2D_multiply -->|returns| mathUtils_Matrix2D
+
+    classDef classNode fill:#2563eb,stroke:#1d4ed8,color:#fff;
+    classDef typeNode fill:#7c3aed,stroke:#6d28d9,color:#fff;
+    classDef fnNode fill:#059669,stroke:#047857,color:#fff;
